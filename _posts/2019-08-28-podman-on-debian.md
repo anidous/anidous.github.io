@@ -71,7 +71,7 @@ cp bin/* /usr/libexec/cni
 # setup CNI networking
 mkdir -p /etc/cni/net.d/
 touch /etc/cni/net.d/99-loopback.conf
-cat <<EOT > /etc/cni/net.d/99-loopback.conf
+cat &lt;&lt;EOT &gt; /etc/cni/net.d/99-loopback.conf
 {
   "cniVersion": "0.4.0",
   "name": "podman",
@@ -115,7 +115,7 @@ EOT
 #Populate registry configuration file
 mkdir -p /etc/containers
 touch /etc/containers/registries.conf
-cat <<EOT > /etc/containers/registries.conf
+cat &lt;&lt;EOT &gt; /etc/containers/registries.conf
 # This is a system-wide configuration file used to
 # keep track of registries for various container backends.
 # It adheres to TOML format and does not support recursive
@@ -145,7 +145,7 @@ EOT
 #Populate registry policy config
 mkdir -p /etc/containers
 touch /etc/containers/policy.json
-cat <<EOT > /etc/containers/policy.json
+cat &lt;&lt;EOT &gt; /etc/containers/policy.json
 {
   "default": [
     {
