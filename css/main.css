@@ -46,6 +46,8 @@ ul.posts li {
     font-family: 'arial';
     font-size: 1.3em;
 }
+li {
+    margin-top: 15px;
 
 pre {
     background: #f4f4f4;
