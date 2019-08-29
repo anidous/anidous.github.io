@@ -1,6 +1,7 @@
 body {
     margin: 60px auto;
     width: 70%;
+    fon
 }
 nav ul, footer ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
@@ -40,6 +41,10 @@ ul.posts {
 
 ul.posts li {
     list-style: none;
+}
+.post {
+    font-family: 'arial';
+    font-size: '1.3em';
 }
 
 pre {
