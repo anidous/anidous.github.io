@@ -210,7 +210,7 @@ Part 2
 That's the bare minimum for a somewhat secure ssh accessible box.  Change the password as well.  You could probably install ufw and lock it down to your ip but this is for learning.
 
 <li>Back at the products page deploy a server anywhere you want.
-	Choose the $5 1GB instance.  Thriftiness is a virtue.
+	Choose the $5 1GB Debian 10 instance.  Thriftiness is a virtue.
 	Select IPV6 because we live in the future.
 	Select private networking just in case because it can be much faster with multiple services
 	Select your 'setup' script.  You can also add your ssh key but we're doing it in the setup script because it's more portable.  It doesn't hurt though.
