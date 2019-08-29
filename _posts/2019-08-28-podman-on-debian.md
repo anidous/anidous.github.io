@@ -184,7 +184,9 @@ It installed podman on your local machine and it also copied the tar'd libpod di
 Part 2
 
 0. Make sure you have an SSH key on your local machine.
+
 1. Go to your Vultr Account and create a startup script.  Paste the below code in it.  Call it 'setup' then save and go back the products page.
+
 <pre>
 	#!/bin/bash
 	adduser --disabled-password --gecos "" ssh_username;
@@ -215,20 +217,25 @@ That's the bare minimum for a somewhat secure ssh accessible box.  Change the pa
 <pre>
 	ssh ssh_username@123.456.789.012
 </pre>
+
 4. If the previous step worked Open up a new terminal and scp the 'install_podman.sh' script to the server with the code below.  If not, then figure out why it didn't work.
 <pre>
 	scp install_podman.sh ssh_username@123.456.789.012:~/
 </pre>
+
 5. In your previous terminal become sudo with:
 <pre>
 	sudo su
 </pre>
 type in your password.
+
 6. Run the 'install_podman.sh' and wait for that bitch to Out of Memory Error.  The reason it OOMs is because the go build command is running out of memory like the gluttonous modern day software it is.  Seriously people, get your shit together - 1GB of memory should be enough for anyone to compile code.  We have SSDs, page that shit.  The final product works well so we're still going to use it.  We're not going to fix the OOM error though, that's too technical and we have other things to build.
+
 7. scp that libpod.tar.gz in your home directory on your local machine to the server.  Caution: this step was only tested between ubuntu and debian. if you're running something else locally then figure out how to cross compile go code or make it in a container or another server or something.
 <pre>
 	scp libpod.tar.gz ssh_username@123.456.789.012:~/
 </pre>
+
 8. untar the file, cd into the directory and modify the Makefile to just copy the completed files to the server.
 <pre>
 	tar xzf libpod.tar.gz && cd libpod
@@ -245,7 +252,7 @@ install.cni:
 install.docker: docker-docs
 install.systemd:
 </pre>
-delete everything to the right of the colon on those lines, i.e. podman-remote, pdoman, docs, and docker-docs should be removed.  Save and exit.
+delete everything to the right of the colon on those lines, i.e. podman-remote, podman, docs, and docker-docs should be removed.  Save and exit.
 9. run this, you should still be sudo, if you aren't then prepend sudo the command:
 <pre>
 	make install
