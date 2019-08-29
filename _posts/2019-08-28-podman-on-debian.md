@@ -48,7 +48,7 @@ DEBIAN_FRONTEND=noninteractive apt -qy install linux-headers-$(uname -r) \
   libapparmor-dev
 
 if [ ! -d "$HOME" ]; then
-  export HOME=/home/<USERNAME>
+  export HOME=/home/USERNAME
 fi
 if [ ! -d "$GOPATH" ]; then
   export GOPATH=$HOME
@@ -186,20 +186,20 @@ Part 2
 0. Make sure you have an SSH key on your local machine.
 1. Go to your Vultr Account and create a startup script.  Paste the below code in it.  Call it 'setup' then save and go back the products page.
 <pre>
-#!/bin/bash
-adduser --disabled-password --gecos "" <ssh_username>;
-echo "<ssh_username>:higgybiggyboo" | chpasswd
-usermod -aG sudo <ssh_username>;
-sed -re 's/^(\#?)(PasswordAuthentication)([[:space:]]+)yes/\2\3no/'  -i.`date -I` /etc/ssh/sshd_config;
-sed -re 's/^(\#?)(PermitRootLogin)([[:space:]]+)yes/\2\3no/'  -i.`date -I` /etc/ssh/sshd_config;
+	#!/bin/bash
+	adduser --disabled-password --gecos "" <ssh_username>;
+	echo "<ssh_username>:higgybiggyboo" | chpasswd
+	usermod -aG sudo <ssh_username>;
+	sed -re 's/^(\#?)(PasswordAuthentication)([[:space:]]+)yes/\2\3no/'  -i.`date -I` /etc/ssh/sshd_config;
+	sed -re 's/^(\#?)(PermitRootLogin)([[:space:]]+)yes/\2\3no/'  -i.`date -I` /etc/ssh/sshd_config;
 
-#dev sshkey setup
-sudo su - <ssh_username>;
-cd /home/<ssh_username>/ && mkdir .ssh && cd .ssh;
-echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+aZrJIlQU0Tf7PVAnTAb58BjTHTyAXRWDfUGigOGSS5HIAVQBz/q4h2zaqUGr6v+FMEbOV05aTS0deta9kyruwphvCkux3cA9Nsa8NdjmS/ayzUm22hC+jeFsUOCmPMcgXSPm5iOqpOUiiRqfJe11h+0MuyMlovptlSbom2uCbD1MIlq1jDSZeQlpSY1GveiZ8lD1dKesOdYe7GcXY6fC2wost646lbSS8zS+IsaLLDt7xB7UvV3acsrjSBhuo02xufnPjkXxPW3rfXYToES51KdwEuVdBE8486FF4ZJLYbay4rnHRSu6mAELTY9NXSBEojl9pS9+MgPILk1OJ7D5ZCafJZ4PaMx0ZC3hnRFB2AoBZUBYOB1sFp6wxiyL+Bh2jDXZuM2MMZ4MWMHpQgwjTQEKFSCvVll4+rHjz2qAcg6bpFC8ju0zdnYzo05LS9cG5T9NrlCZZjC1hnVC17L9dheIZaFrIS6oOxCmEBWHguKvMubv5OvUh729gbLc/CX3NTGc9xUuJ+RUOW9SeTindboKcjXzWFxaD0aziqwwgyxbCmJ+bb3d5IPt0VnBFlH/lDWRe2ATbmwMqpiwvKKZMpscGq5SHzX1NPYad1qCm/5O5X+dshZEOMnnQLQcdtcBx3NYiJWIxoveCUFSYVke0NQyggn/wqqabWvBhMHIPQ== amazinguser@userslappy" > authorized_keys
-systemctl reload sshd.service
+	#dev sshkey setup
+	sudo su - <ssh_username>;
+	cd /home/<ssh_username>/ && mkdir .ssh && cd .ssh;
+	echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+aZrJIlQU0Tf7PVAnTAb58BjTHTyAXRWDfUGigOGSS5HIAVQBz/q4h2zaqUGr6v+FMEbOV05aTS0deta9kyruwphvCkux3cA9Nsa8NdjmS/ayzUm22hC+jeFsUOCmPMcgXSPm5iOqpOUiiRqfJe11h+0MuyMlovptlSbom2uCbD1MIlq1jDSZeQlpSY1GveiZ8lD1dKesOdYe7GcXY6fC2wost646lbSS8zS+IsaLLDt7xB7UvV3acsrjSBhuo02xufnPjkXxPW3rfXYToES51KdwEuVdBE8486FF4ZJLYbay4rnHRSu6mAELTY9NXSBEojl9pS9+MgPILk1OJ7D5ZCafJZ4PaMx0ZC3hnRFB2AoBZUBYOB1sFp6wxiyL+Bh2jDXZuM2MMZ4MWMHpQgwjTQEKFSCvVll4+rHjz2qAcg6bpFC8ju0zdnYzo05LS9cG5T9NrlCZZjC1hnVC17L9dheIZaFrIS6oOxCmEBWHguKvMubv5OvUh729gbLc/CX3NTGc9xUuJ+RUOW9SeTindboKcjXzWFxaD0aziqwwgyxbCmJ+bb3d5IPt0VnBFlH/lDWRe2ATbmwMqpiwvKKZMpscGq5SHzX1NPYad1qCm/5O5X+dshZEOMnnQLQcdtcBx3NYiJWIxoveCUFSYVke0NQyggn/wqqabWvBhMHIPQ== amazinguser@userslappy" > authorized_keys
+	systemctl reload sshd.service
 
-echo "GOOD TO GO."
+	echo "GOOD TO GO."
 </pre>
 
 That's the bare minimum for a somewhat secure ssh accessible box.  Change the password as well.  You could probably install ufw and lock it down to your ip but this is for learning.
